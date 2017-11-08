@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			padding: 0 50px 50px;
+		}
+		.delegation{
+			padding-bottom: 30px;
+			border-bottom: 2px solid #4280f5;
+		}
+		.head{
+			line-height: 100px;
+			text-align: center;
+			font-size: 20px;
+			font-weight: 700;
+		}
+		.delegation p{
+			line-height: 36px;
+			padding: 10px 0;
+		}
+		.delegation a{
+			font-size: 30px;
+			color: #4280f5;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="delegation">
+		<div class="head">事件委托</div>
+		<h3>事件委托即是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。</h3>
+		<p>
+			<span style="font-weight:500;">借鉴其他大牛的一个例子，也为自己更好的理解一下：收快递例子</span>
+			有三个同事预计会在周一收到快递。为签收快递，有两种办法：一是三个人在公司门口等快递；二是委托给前台MM代为签收。现实当中，我们大都采用委托的方案（公司也不会容忍那么多员工站在门口就为了等快递）。前台MM收到快递后，她会判断收件人是谁，然后按照收件人的要求签收，甚至代为付款。这种方案还有一个优势，那就是即使公司里来了新员工（不管多少），前台MM也会在收到寄给新员工的快递后核实并代为签收。
+		</p>
+		<p>
+			两层意思：<br> 
+			1.现在委托前台的同事是可以签收的，即程序中的现有的dom节点是有事件的；<br>
+			2.新员工也是可以被前台mm代为签收的，即程序中新添加的dom节点也是有事件的。
+		</p>
+		<h3>为什么用事件委托，好处是？</h3>
+		<p>减少dom操作，提升性能。</p>
+		<a href="delegation.html">点我看demo加深理解</a>
+	</div>
+</body>
+</html>

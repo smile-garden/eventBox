@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>事件委托、追加</title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		body{
+			position: relative;
+			padding-top: 50px;
+		}
+		.list{
+			width: 200px;
+			margin: 0 auto 50px;
+			cursor: pointer;
+		}
+		.item{
+			width: 100%;
+			height: 50px;
+			background: #eee;
+			border-bottom: 1px solid #ccc;
+			position: relative;
+		}
+		.list div, .item p{
+			width: 50%;
+			height: 100%;
+			line-height: 50px;
+			text-align: center;
+			float: left;
+		}
+		.list div{
+			background: #4280f5;
+			color: #fff;
+		}
+		.s{
+			width: 100px;
+			position: absolute;
+			top: 20px;
+			left: -100px;
+			display: none;
+			z-index: 10;
+		}
+		.i{
+			width: 100%;
+			height: 40px;
+			text-align: center;
+			line-height: 40px;
+			background: pink;
+			border-bottom: 1px solid red;
+		}
+		.btn{
+			width: 100px;
+			height: 50px;
+			cursor: pointer;
+			text-align: center;
+			line-height: 50px;
+			border-radius: 6px;
+			background: #eee;
+			margin: 0 auto;
+		}
+		.back{
+			width: 100px;
+			height: 50px;
+			cursor: pointer;
+			text-align: center;
+			line-height: 50px;
+			border-radius: 6px;
+			background: #eee;
+			position: absolute;
+			top: 50px;
+			left: 50px;
+		}
+		.toast{
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: rgba(0, 0, 0, .3);
+		}
+		.tip{
+			text-align: center;
+			height: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div class="back">
+		<a href="index.html">返回</a>
+	</div>
+	<div class="tip">点击蓝底格子进行选择（事件委托、追加）</div>
+	<ul class="list">
+		<li class="item">
+			<div class="a">1</div>
+			<ul class="s">
+				<li class="i">1</li>
+				<li class="i">2</li>
+				<li class="i">3</li>
+			</ul>
+			<p>11</p>
+		</li>
+		<li class="item">
+			<div class="a">2</div>
+			<ul class="s">
+				<li class="i">1</li>
+				<li class="i">2</li>
+				<li class="i">3</li>
+			</ul>
+			<p>12</p>
+		</li>
+		<li class="item">
+			<div class="a">3</div>
+			<ul class="s">
+				<li class="i">1</li>
+				<li class="i">2</li>
+				<li class="i">3</li>
+			</ul>
+			<p>13</p>
+		</li>
+		<li class="item">
+			<div class="a">4</div>
+			<ul class="s">
+				<li class="i">1</li>
+				<li class="i">2</li>
+				<li class="i">3</li>
+			</ul>
+			<p>14</p>
+		</li>
+		<li class="item">
+			<div class="a">5</div>
+			<ul class="s">
+				<li class="i">1</li>
+				<li class="i">2</li>
+				<li class="i">3</li>
+			</ul>
+			<p>15</p>
+		</li>
+	</ul>
+	<div class="btn">增加</div>
+	<div class="toast"></div>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+	<script>
+		var a = 5,b = 15;
+		function target(e) {
+			console.log(this.className);
+			if (this.className == 'i') {
+				var list = $(this).parent();
+				list.find('li').css({'background': 'pink'});
+				$(this).css({'background':'#4280f5'});
+				list.parent().find('.a').text($(this).text());
+				list.hide();
+				$('.toast').hide();
+			};
+			if (this.className == 'a') {
+				$('.toast').show();
+				$(this).next('.s').css({'display':'block'});
+			};
+		}
+		$('.list').on('click', 'div, .i', target);
+		$('.btn').on('click', function() {
+			a++;
+			b++;
+			$('.list').append('<li class="item"><div class="a">'+ a +'</div><ul class="s"><li class="i">1</li><li class="i">2</li><li class="i">3</li></ul><p>'+ b +'</p></li>');
+		})
+	</script>
+</body>
+</html>
